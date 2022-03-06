@@ -1,6 +1,6 @@
 import { prisma } from '../../../../database/prismaClient';
 import { formatToDateTime } from '../../../../shared/utils/formatToDateTime';
-import { ICreateAuthorDTO } from '../../dtos/ICreateAuthorDTO';
+import { ICreateAuthorDTO } from '../../../../dtos/ICreateAuthorDTO';
 
 export class CreateAuthorUseCase {
   async execute({ name, email, dateOfBirth }: ICreateAuthorDTO) {

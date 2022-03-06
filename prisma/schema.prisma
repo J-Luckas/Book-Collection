@@ -27,7 +27,7 @@ model Book {
     pages       Int
     authorId    String?
     author      Author? @relation(fields: [authorId], references: [id])
-    publishedAt DateTime
+    publishedAt DateTime?
 
     @@map("books")
 }

@@ -1,5 +1,5 @@
 import { prisma } from '../../../../database/prismaClient';
-import { ICreateAuthorDTO } from '../../dtos/ICreateAuthorDTO';
+import { ICreateAuthorDTO } from '../../../../dtos/ICreateAuthorDTO';
 
 export class GetAuthorUseCase {
   async execute() {
