@@ -1,3 +1,5 @@
+import { prisma } from '../../../database/prismaClient';
+
 interface ICreateAuthor {
   name: string;
   email: string;
@@ -6,19 +8,27 @@ interface ICreateAuthor {
 }
 
 export class CreateAuthorUseCase {
-  allAuthors:ICreateAuthor[] = [];
-
   async execute({ name, email, dateOfBirth }: ICreateAuthor) {
-    const authorExists = this.allAuthors.find((author) => author.email === email);
+    const authorExists = await prisma.author.findFirst({
+      where: {
+        email: {
+          equals: email,
+          mode: 'insensitive',
+        },
+      },
+    });
 
     if (authorExists) throw new Error('Author already exists');
 
-    const author = {
-      name,
-      email,
-      dateOfBirth,
-    };
+    const formDateOfBirth = new Date(dateOfBirth).toISOString();
+    const author = await prisma.author.create({
+      data: {
+        name,
+        email,
+        dateOfBirth: formDateOfBirth,
+      },
+    });
 
-    this.allAuthors.push(author);
+    return author;
   }
 }
