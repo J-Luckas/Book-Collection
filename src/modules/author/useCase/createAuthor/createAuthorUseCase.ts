@@ -1,14 +1,9 @@
-import { prisma } from '../../../database/prismaClient';
-
-interface ICreateAuthor {
-  name: string;
-  email: string;
-  dateOfBirth: string;
-
-}
+import { prisma } from '../../../../database/prismaClient';
+import { formatToDateTime } from '../../../../shared/utils/formatToDateTime';
+import { ICreateAuthorDTO } from '../../dtos/ICreateAuthorDTO';
 
 export class CreateAuthorUseCase {
-  async execute({ name, email, dateOfBirth }: ICreateAuthor) {
+  async execute({ name, email, dateOfBirth }: ICreateAuthorDTO) {
     const authorExists = await prisma.author.findFirst({
       where: {
         email: {
@@ -20,12 +15,11 @@ export class CreateAuthorUseCase {
 
     if (authorExists) throw new Error('Author already exists');
 
-    const formDateOfBirth = new Date(dateOfBirth).toISOString();
     const author = await prisma.author.create({
       data: {
         name,
         email,
-        dateOfBirth: formDateOfBirth,
+        dateOfBirth: formatToDateTime(dateOfBirth),
       },
     });
 
