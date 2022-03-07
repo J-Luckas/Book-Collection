@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { ICreateBookDTO } from '../../../../dtos/ICreateBookDTO';
+import { PrismaBooksRepository } from '../../repositories/implementations/PrismaBooksRepository';
 import { CreateBookUseCase } from './createBookUseCase';
 
 export class CreateBookController {
@@ -7,8 +8,8 @@ export class CreateBookController {
     const {
       title, pages, authorId, publishedAt,
     } :ICreateBookDTO = req.body;
-
-    const createBookUseCase = new CreateBookUseCase();
+    const bookRepository = new PrismaBooksRepository();
+    const createBookUseCase = new CreateBookUseCase( bookRepository );
     const createdBook = await createBookUseCase.execute({
       title,
       pages,

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { PrismaBooksRepository } from '../../repositories/implementations/PrismaBooksRepository';
 import { UpdateBookUseCase } from './updateBookUseCase';
 
 export class UpdateBookController {
@@ -7,7 +8,9 @@ export class UpdateBookController {
     const {
       pages, title, authorId, publishedAt,
     } = req.body;
-    const updateBookUseCase = new UpdateBookUseCase();
+
+    const bookRepository = new PrismaBooksRepository();
+    const updateBookUseCase = new UpdateBookUseCase( bookRepository );
     const book = await updateBookUseCase.execute({
       id,
       pages,

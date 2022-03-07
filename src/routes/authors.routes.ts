@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { CreateAuthorController } from '../modules/author/useCase/createAuthor/createAuthorController';
-import { DeleteAuthorController } from '../modules/author/useCase/deleteAuthor/deleteAuthorController';
-import { GetAuthorController } from '../modules/author/useCase/getAllAuthors/getAuthorController';
-import { UpdateAuthorController } from '../modules/author/useCase/updateAuthor/updateAuthorController';
+import { CreateAuthorController } from '../modules/author/useCases/createAuthor/createAuthorController';
+import { DeleteAuthorController } from '../modules/author/useCases/deleteAuthor/deleteAuthorController';
+import { GetAuthorController } from '../modules/author/useCases/getAllAuthors/getAuthorController';
+import { UpdateAuthorController } from '../modules/author/useCases/updateAuthor/updateAuthorController';
 
 export const authorsRouter = Router();
 

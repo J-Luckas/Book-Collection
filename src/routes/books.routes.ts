@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
-import { CreateBookController } from '../modules/book/useCase/createBook/createBookController';
-import { GetBookController } from '../modules/book/useCase/getBook/getBookController';
-import { UpdateBookController } from '../modules/book/useCase/updateBook/updateBookController';
-import { DeleteBookController } from '../modules/book/useCase/deleteBook/deleteBookController';
+import { CreateBookController } from '../modules/book/useCases/createBook/createBookController';
+import { GetBookController } from '../modules/book/useCases/getBook/getBookController';
+import { UpdateBookController } from '../modules/book/useCases/updateBook/updateBookController';
+import { DeleteBookController } from '../modules/book/useCases/deleteBook/deleteBookController';
 
 export const booksRouter = Router();
 
