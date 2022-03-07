@@ -19,10 +19,13 @@ export class Book {
   static create({
     title, pages, authorId, publishedAt,
   }) {
+    if (!title) throw new Error('Title is not defined');
+    if (!pages || pages < 0) throw new Error('Pages is not defined');
+
     return new Book({
       title,
       pages,
-      authorId,
+      authorId: authorId || null,
       publishedAt,
     });
   }

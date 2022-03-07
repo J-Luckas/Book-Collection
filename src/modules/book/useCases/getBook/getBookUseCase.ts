@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 import { ICreateBookDTO } from '../../../../dtos/ICreateBookDTO';
 import { IBooksRepositories } from '../../repositories/IBooksRepositories';
