@@ -6,21 +6,21 @@ import { IBooksRepositories } from '../../repositories/IBooksRepositories';
 export class CreateBookUseCase {
   constructor(
       @inject('BooksRepository')
+        // eslint-disable-next-line no-unused-vars
         private bookRepository: IBooksRepositories,
   ) {}
 
   async execute({
     title, pages, authorId, publishedAt,
   }: ICreateBookDTO) {
-
     const bookExists = await this.bookRepository.findByTitle(title);
     if (bookExists) throw new Error('Book already exists');
 
     const book = await this.bookRepository.create({
-        title,
-        pages,
-        authorId,
-        publishedAt,
+      title,
+      pages,
+      authorId,
+      publishedAt,
     });
 
     return book;

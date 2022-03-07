@@ -1,10 +1,16 @@
-import { prisma } from '../../../../database/prismaClient';
-import { ICreateAuthorDTO } from '../../../../dtos/ICreateAuthorDTO';
+import { inject, injectable } from 'tsyringe';
+import { IAuthorsRepositories } from '../../repositories/IAuthorRepositories';
 
+@injectable()
 export class GetAuthorUseCase {
-  async execute() {
-    const authors: ICreateAuthorDTO[] = await prisma.author.findMany();
+  constructor(
+    @inject('AuthorsRepository')
+    // eslint-disable-next-line no-unused-vars
+    private authorRepository: IAuthorsRepositories,
+  ) { }
 
+  async execute() {
+    const authors = await this.authorRepository.findAll();
     return authors;
   }
 }

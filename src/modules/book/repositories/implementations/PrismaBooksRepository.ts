@@ -19,25 +19,23 @@ export class PrismaBooksRepository implements IBooksRepositories {
 
   async findById(id: string): Promise<Book> {
     const bookExists = await prisma.book.findFirst({
-        where: {
-            id: {
-                equals: id,
-            },
+      where: {
+        id: {
+          equals: id,
         },
+      },
     });
     return bookExists;
   }
 
   async findByTitle(title: string): Promise<boolean> {
-
-
     const bookExists = await prisma.book.findFirst({
-        where: {
-            title: {
-            equals: title,
-            mode: 'insensitive',
-            },
+      where: {
+        title: {
+          equals: title,
+          mode: 'insensitive',
         },
+      },
     });
     return !!bookExists;
   }
@@ -51,17 +49,19 @@ export class PrismaBooksRepository implements IBooksRepositories {
     return allBooks;
   }
 
-  async update({ id, title, pages, authorId, publishedAt }: Book): Promise<Book> {
+  async update({
+    id, title, pages, authorId, publishedAt,
+  }: Book): Promise<Book> {
     const updatedBook = await prisma.book.update({
-        where: {
-            id,
-        },
-        data: {
-            title: title,
-            pages: pages,
-            authorId: authorId,
-            publishedAt: publishedAt,
-        },
+      where: {
+        id,
+      },
+      data: {
+        title,
+        pages,
+        authorId,
+        publishedAt,
+      },
     });
     return updatedBook;
   }

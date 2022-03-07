@@ -4,10 +4,11 @@ import { IBooksRepositories } from '../../repositories/IBooksRepositories';
 
 @injectable()
 export class UpdateBookUseCase {
-
   constructor(
     @inject('BooksRepository')
-    private bookRepository: IBooksRepositories) {}
+    // eslint-disable-next-line no-unused-vars
+    private bookRepository: IBooksRepositories,
+  ) {}
 
   async execute({
     id, pages, title, authorId, publishedAt,

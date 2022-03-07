@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { PrismaBooksRepository } from '../../repositories/implementations/PrismaBooksRepository';
 import { DeleteBookUseCase } from './deleteBookUseCase';
 
 export class DeleteBookController {
