@@ -1,9 +1,11 @@
-import { prisma } from '../../../../database/prismaClient';
+import { inject, injectable } from 'tsyringe';
 import { ICreateBookDTO } from '../../../../dtos/ICreateBookDTO';
 import { IBooksRepositories } from '../../repositories/IBooksRepositories';
 
+@injectable()
 export class CreateBookUseCase {
   constructor(
+      @inject('BooksRepository')
         private bookRepository: IBooksRepositories,
   ) {}
 

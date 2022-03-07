@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PrismaBooksRepository } from '../../repositories/implementations/PrismaBooksRepository';
+import { container } from 'tsyringe';
 import { UpdateBookUseCase } from './updateBookUseCase';
 
 export class UpdateBookController {
@@ -9,8 +9,7 @@ export class UpdateBookController {
       pages, title, authorId, publishedAt,
     } = req.body;
 
-    const bookRepository = new PrismaBooksRepository();
-    const updateBookUseCase = new UpdateBookUseCase( bookRepository );
+    const updateBookUseCase = container.resolve(UpdateBookUseCase);
     const book = await updateBookUseCase.execute({
       id,
       pages,

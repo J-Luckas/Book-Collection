@@ -1,9 +1,13 @@
+import { inject, injectable } from 'tsyringe';
 import { prisma } from '../../../../database/prismaClient';
 import { IBooksRepositories } from '../../repositories/IBooksRepositories';
 
+@injectable()
 export class DeleteBookUseCase {
 
-  constructor( private bookRepository: IBooksRepositories){}
+  constructor(
+      @inject('BooksRepository')
+      private bookRepository: IBooksRepositories){}
 
   async execute(id: string): Promise<void> {
 
