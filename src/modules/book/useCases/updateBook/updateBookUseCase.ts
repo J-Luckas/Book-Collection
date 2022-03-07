@@ -6,8 +6,10 @@ import { IBooksRepositories } from '../../repositories/IBooksRepositories';
 export class UpdateBookUseCase {
   constructor(
     @inject('BooksRepository')
+
     // eslint-disable-next-line no-unused-vars
     private bookRepository: IBooksRepositories,
+
   ) {}
 
   async execute({
